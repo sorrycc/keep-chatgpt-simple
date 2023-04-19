@@ -22,7 +22,7 @@
     const text = await res.text();
     const isJSON = contentType && contentType.includes('application/json');
     const is403 = res.status === 403;
-    console.log('> ', isJSON, is403, text);
+    console.log('[Keep ChatGPT Simple] >', isJSON, is403, text);
     const isValid = isJSON && !is403 && text.includes('expires');
     if (!isValid) {
       throw new Error('Invalid response');
@@ -32,7 +32,7 @@
   function run() {
     keepChat().then(() => {
       const random = getRandomNumber();
-      console.log('Next run in ' + random + ' seconds');
+      console.log('[Keep ChatGPT Simple] Next run in ' + random + ' seconds');
       setTimeout(run, random * 1000);
     }).catch(e => {
       console.error(e.message);
