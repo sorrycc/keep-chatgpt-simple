@@ -34,6 +34,7 @@
     setTimeout(() => {
       keepChat().then(() => {
         console.log('[Keep ChatGPT Simple] Next run in ' + random + ' seconds');
+        run();
       }).catch(e => {
         console.error(e.message);
         console.log('[Keep ChatGPT Simple] refresh automatically...');
