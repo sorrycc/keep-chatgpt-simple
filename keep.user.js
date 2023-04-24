@@ -30,14 +30,17 @@
   }
 
   function run() {
-    keepChat().then(() => {
-      const random = getRandomNumber();
-      console.log('[Keep ChatGPT Simple] Next run in ' + random + ' seconds');
-      setTimeout(run, random * 1000);
-    }).catch(e => {
-      console.error(e.message);
-      alert(`Session 失效了，请手动刷新页面重试！`);
-    });
+    const random = getRandomNumber();
+    setTimeout(() => {
+      keepChat().then(() => {
+        console.log('[Keep ChatGPT Simple] Next run in ' + random + ' seconds');
+        run();
+      }).catch(e => {
+        console.error(e.message);
+        console.log('[Keep ChatGPT Simple] refresh automatically...');
+        location.reload();
+      });
+    }, random * 1000);
   }
 
   run();
